@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import axios from 'axios';
+import url from '../utils/baseurl';
 
 export default class CreateUser extends Component {
   constructor(props) {
@@ -24,7 +26,10 @@ export default class CreateUser extends Component {
       username: this.state.username,
     };
 
-    console.log(user);
+    axios
+      .post(`${url}/users/add`, user)
+      .then(res => console.log(res.data))
+      .catch(err => console.log(err));
 
     this.setState({
       username: '',
@@ -48,7 +53,7 @@ export default class CreateUser extends Component {
             <div className='form-group'>
               <input
                 type='submit'
-                value='Create Exercise Log'
+                value='Create User'
                 className='btn btn-primary'
               />
             </div>
