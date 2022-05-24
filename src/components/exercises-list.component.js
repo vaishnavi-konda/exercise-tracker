@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
-import url from '../utils/baseurl';
+import backend_url from '../utils/backendurl';
 
 const Exercise = props => (
   <tr>
@@ -10,19 +9,15 @@ const Exercise = props => (
     <td>{props.exercise.duration}</td>
     <td>{props.exercise.date.substring(0, 10)}</td>
     <td>
-      <Link to={'/edit/' + props.exercise._id}>edit</Link> |{' '}
+      <a href={'/edit/' + props.exercise._id} className='btn btn-primary'>
+        edit
+      </a>
+      {'  '}
       <button
         onClick={() => {
           props.deleteExercise(props.exercise._id);
         }}
-        style={{
-          color: 'blue',
-          background: 'none',
-          border: 'none',
-          padding: 0,
-          cursor: 'pointer',
-          textDecoration: 'none',
-        }}
+        className='btn btn-primary '
       >
         delete
       </button>
@@ -41,7 +36,7 @@ export default class ExercisesList extends Component {
 
   componentDidMount() {
     axios
-      .get(`${url}/exercises/`)
+      .get(`${backend_url}/exercises/`)
       .then(response => {
         this.setState({ exercises: response.data });
       })
@@ -51,7 +46,7 @@ export default class ExercisesList extends Component {
   }
 
   deleteExercise(id) {
-    axios.delete(`${url}/exercises/` + id).then(response => {
+    axios.delete(`${backend_url}/exercises/` + id).then(response => {
       console.log(response.data);
     });
 
@@ -76,7 +71,7 @@ export default class ExercisesList extends Component {
     return (
       <div>
         <h3>Logged Exercises</h3>
-        <table className='table'>
+        <table className='table table-bordered table-hover'>
           <thead className='thead-light'>
             <tr>
               <th>Username</th>

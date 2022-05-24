@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import url from '../utils/baseurl';
+import backend_url from '../utils/backendurl';
 
 export default class CreateUser extends Component {
   constructor(props) {
@@ -27,8 +27,8 @@ export default class CreateUser extends Component {
     };
 
     axios
-      .post(`${url}/users/add`, user)
-      .then(res => console.log(res.data))
+      .post(`${backend_url}/users/add`, user)
+      .then(res => alert(res.data))
       .catch(err => console.log(err));
 
     this.setState({
@@ -39,10 +39,10 @@ export default class CreateUser extends Component {
   render() {
     return (
       <div>
-        <h3>Create New Exercise Log</h3>
+        <h3>Create New User</h3>
         <form onSubmit={this.onSubmit}>
           <div className='form-group'>
-            <label>Username: </label>
+            Username:
             <input
               type='text'
               required
@@ -50,13 +50,9 @@ export default class CreateUser extends Component {
               value={this.state.username}
               onChange={this.onChangeUsername}
             />
-            <div className='form-group'>
-              <input
-                type='submit'
-                value='Create User'
-                className='btn btn-primary'
-              />
-            </div>
+            <button type='submit' className='btn btn-primary mt-10'>
+              Create user
+            </button>
           </div>
         </form>
       </div>

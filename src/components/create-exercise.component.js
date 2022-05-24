@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import axios from 'axios';
-import url from '../utils/baseurl';
+import backend_url from '../utils/backendurl';
 
 export default class CreateExercise extends Component {
   constructor(props) {
@@ -25,7 +25,7 @@ export default class CreateExercise extends Component {
 
   componentDidMount() {
     axios
-      .get(`${url}/users/`)
+      .get(`${backend_url}/users/`)
       .then(response => {
         if (response.data.length > 0) {
           this.setState({
@@ -74,7 +74,7 @@ export default class CreateExercise extends Component {
     };
 
     axios
-      .post(`${url}/exercises/add`, exercise)
+      .post(`${backend_url}/exercises/add`, exercise)
       .then(res => console.log(res.data))
       .catch(err => console.log(err));
 
