@@ -5,6 +5,7 @@
   "dependencies": {
     "axios": "^0.25.0",
     "bootstrap": "^5.0.2",
+    "concurrently": "^7.2.1",
     "react": "^17.0.2",
     "react-datepicker": "^4.6.0",
     "react-dom": "^17.0.2",
@@ -13,7 +14,7 @@
     "web-vitals": "^1.1.2"
   },
   "scripts": {
-    "start": "set PORT=5000 && react-scripts start",
+    "start": "concurrently \"set PORT=5000 && react-scripts start\" \"cd backend && npm start\"",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
