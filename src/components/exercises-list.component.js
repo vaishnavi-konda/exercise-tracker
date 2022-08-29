@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import backend_url from '../utils/backendurl';
 
 const Exercise = props => (
   <tr>
@@ -36,7 +35,7 @@ export default class ExercisesList extends Component {
 
   componentDidMount() {
     axios
-      .get(`${backend_url}/exercises/`)
+      .get(`https://exercise-tracker-api-026.herokuapp.com/exercises/`)
       .then(response => {
         this.setState({ exercises: response.data });
       })
@@ -46,7 +45,7 @@ export default class ExercisesList extends Component {
   }
 
   deleteExercise(id) {
-    axios.delete(`${backend_url}/exercises/` + id).then(response => {
+    axios.delete(`https://exercise-tracker-api-026.herokuapp.com/exercises/` + id).then(response => {
       console.log(response.data);
     });
 

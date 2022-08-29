@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import backend_url from '../utils/backendurl';
 
 export default class CreateUser extends Component {
   constructor(props) {
@@ -27,7 +26,7 @@ export default class CreateUser extends Component {
     };
 
     axios
-      .post(`${backend_url}/users/add`, user)
+      .post(`https://exercise-tracker-api-026.herokuapp.com/users/add`, user)
       .then(res => alert(res.data))
       .catch(err => console.log(err));
 

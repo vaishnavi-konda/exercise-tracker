@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import backend_url from '../utils/backendurl';
 
 export default class EditExercise extends Component {
   constructor(props) {
@@ -27,7 +26,7 @@ export default class EditExercise extends Component {
     const id = window.location.pathname.split('/')[2];
 
     axios
-      .get(`${backend_url}/exercises/` + id)
+      .get(`https://exercise-tracker-api-026.herokuapp.com/exercises/` + id)
       .then(response => {
         this.setState({
           username: response.data.username,
@@ -41,7 +40,7 @@ export default class EditExercise extends Component {
       });
 
     axios
-      .get(`${backend_url}/users/`)
+      .get(`https://exercise-tracker-api-026.herokuapp.com/users/`)
       .then(response => {
         if (response.data.length > 0) {
           this.setState({
@@ -91,7 +90,7 @@ export default class EditExercise extends Component {
     const id = window.location.pathname.split('/')[2];
 
     axios
-      .post(`${backend_url}/exercises/update/` + id, exercise)
+      .post(`https://exercise-tracker-api-026.herokuapp.com/exercises/update/` + id, exercise)
       .then(res => console.log(res.data));
 
     window.location = '/';
